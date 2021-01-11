@@ -1,0 +1,42 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="row align-items-center justify-content-between">
+            <div class="col-md-3">
+                <mat-form-field appearance="standard">
+                    <mat-label>Character</mat-label>
+                    <input matInput name="character" type="text" placeholder="Character" [disabled]="characterIsDisabled" maxlength="1" (change)="setWeightConstant()" 
+                        [(ngModel)]="weightConstant" onlyAlphabet/>
+                </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <app-analog-clock></app-analog-clock>
+            </div>
+            <div class="col-md-4 text-right">
+                <button mat-raised-button type="button" color="primary" (click)="startGenerator()">
+                    Generate 2D Grid
+                    <div class="ripple-container"></div>
+                  </button>
+            </div>
+        </div>
+        <hr/>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-hover nested-table mat-elevation-z8">
+                    <tbody>
+                        <tr *ngFor="let charactersRow of charactersSource">
+                            <td *ngFor="let character of charactersRow">
+                                {{ character }}
+                            </td>
+                        </tr>
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+        <hr/>
+        <div class="row">
+            <div class="col-md-12">
+                <app-code-preview></app-code-preview>
+            </div>
+        </div>
+    </div>
+</div>

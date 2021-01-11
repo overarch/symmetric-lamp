@@ -1,0 +1,67 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <app-code-preview></app-code-preview>
+            </div>
+        </div>
+        <hr/>
+        <form action="" method="" #addressMaintenanceForm="ngForm">
+            <div class="row">
+                <div class="col-md-3">
+                    <mat-form-field appearance="standard">
+                        <mat-label>Payment</mat-label>
+                        <input matInput name="payment" type="text" #paymentName placeholder="Payment" [(ngModel)]="payment.name" required/>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field appearance="standard">
+                        <mat-label>Amount</mat-label>
+                        <input matInput name="amount" type="text" #paymentAmount placeholder="Amount" [(ngModel)]="payment.amount" required/>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <button mat-raised-button type="button" color="primary" (click)="addPayment()" [disabled]="addressMaintenanceForm.invalid || !payment.code || !payment.grid">
+                        <span class="btn-label"> <i class="material-icons">add</i> </span>
+                            ADD
+                        <div class="ripple-container"></div>
+                    </button>
+                </div>
+            </div>
+        </form>
+        <hr/>
+        <div class="row">
+            <div class="col-md-12">
+                <table mat-table [dataSource]="dataSource" class="table mat-elevation-z8">
+
+                    <ng-container matColumnDef="name">
+                      <th mat-header-cell *matHeaderCellDef> NAME </th>
+                      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+                  
+                    <ng-container matColumnDef="amount">
+                      <th mat-header-cell *matHeaderCellDef> AMOUNT </th>
+                      <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+                    </ng-container>
+                  
+                    <ng-container matColumnDef="code">
+                      <th mat-header-cell *matHeaderCellDef> CODE </th>
+                      <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+                    </ng-container>
+                  
+                    <ng-container matColumnDef="grid">
+                      <th mat-header-cell *matHeaderCellDef> GRID </th>
+                      <td mat-cell *matCellDef="let element"> 
+                        <button mat-icon-button aria-label="View GRID" matTooltip="View GRID" (click)="openDialog(element)">
+                            <mat-icon>pageview</mat-icon>
+                        </button>
+                     </td>
+                    </ng-container>
+                  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  </table>
+            </div>
+        </div>
+    </div>
+</div>
